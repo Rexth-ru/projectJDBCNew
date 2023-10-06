@@ -6,7 +6,6 @@ import java.util.Objects;
 public class Clinic {
     private Long id;
     private String nameClinic;
-    private List<Patient> patientList;
     private List<Doctor> doctorList;
 
     public Clinic() {
@@ -33,14 +32,6 @@ public class Clinic {
         this.nameClinic = nameClinic;
     }
 
-    public List<Patient> getPatientList() {
-        return patientList;
-    }
-
-    public void setPatientList(List<Patient> patientList) {
-        this.patientList = patientList;
-    }
-
     public List<Doctor> getDoctorList() {
         return doctorList;
     }
@@ -54,12 +45,12 @@ public class Clinic {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Clinic clinic = (Clinic) o;
-        return Objects.equals(id, clinic.id) && Objects.equals(nameClinic, clinic.nameClinic) && Objects.equals(patientList, clinic.patientList) && Objects.equals(doctorList, clinic.doctorList);
+        return Objects.equals(id, clinic.id) && Objects.equals(nameClinic, clinic.nameClinic) && Objects.equals(doctorList, clinic.doctorList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nameClinic, patientList, doctorList);
+        return Objects.hash(id, nameClinic, doctorList);
     }
 
     @Override
@@ -67,7 +58,6 @@ public class Clinic {
         return "Clinic{" +
                 "id=" + id +
                 ", nameClinic='" + nameClinic + '\'' +
-                ", patientList=" + patientList +
                 ", doctorList=" + doctorList +
                 '}';
     }

@@ -10,9 +10,9 @@ public class DoctorResultSetMapperImpl implements GeneralResultSetMapper<Doctor>
     @Override
     public Doctor map(ResultSet resultSet) throws SQLException {
         Doctor doctor = new Doctor();
-            doctor.setId(resultSet.getLong("id"));
-            doctor.setNameDoctor(resultSet.getString("name"));
+            doctor.setId(resultSet.getLong("doctor_id"));
+            doctor.setNameDoctor(resultSet.getString("name_doctor"));
             doctor.setSpecialization(resultSet.getString("specialization"));
-        return doctor;
+            return doctor;
     }
 }

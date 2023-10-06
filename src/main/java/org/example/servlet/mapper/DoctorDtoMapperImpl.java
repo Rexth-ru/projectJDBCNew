@@ -24,7 +24,7 @@ public class DoctorDtoMapperImpl implements DoctorDtoMapper {
         OutGoingDoctorDto outGoingDoctorDto = new OutGoingDoctorDto();
         outGoingDoctorDto.setNameDoctor(doctor.getNameDoctor());
         outGoingDoctorDto.setSpecialization(doctor.getSpecialization());
-        outGoingDoctorDto.setClinic(doctor.getClinic().getNameClinic());
+//        outGoingDoctorDto.setClinic(doctor.getClinic().getNameClinic());
         outGoingDoctorDto.setPatients(doctor.getPatients().stream().map(Patient::getNamePatient).toList());
         return outGoingDoctorDto;
     }

@@ -6,17 +6,14 @@ import java.util.Objects;
 public class Patient {
     private Long id;
     private String namePatient;
-    private Clinic clinic;
-
     private List<Doctor> doctors;
 
     public Patient() {
     }
 
-    public Patient(Long id, String namePatient, Clinic clinic, List<Doctor> doctors) {
+    public Patient(Long id, String namePatient, List<Doctor> doctors) {
         this.id = id;
         this.namePatient = namePatient;
-        this.clinic = clinic;
         this.doctors = doctors;
     }
 
@@ -36,14 +33,6 @@ public class Patient {
         this.namePatient = namePatient;
     }
 
-    public Clinic getClinic() {
-        return clinic;
-    }
-
-    public void setClinic(Clinic clinic) {
-        this.clinic = clinic;
-    }
-
     public List<Doctor> getDoctors() {
         return doctors;
     }
@@ -57,12 +46,12 @@ public class Patient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(id, patient.id) && Objects.equals(namePatient, patient.namePatient) && Objects.equals(clinic, patient.clinic) && Objects.equals(doctors, patient.doctors);
+        return Objects.equals(id, patient.id) && Objects.equals(namePatient, patient.namePatient) && Objects.equals(doctors, patient.doctors);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, namePatient, clinic, doctors);
+        return Objects.hash(id, namePatient);
     }
 
     @Override
@@ -70,7 +59,6 @@ public class Patient {
         return "Patient{" +
                 "id=" + id +
                 ", namePatient='" + namePatient + '\'' +
-                ", clinic=" + clinic +
                 ", doctors=" + doctors +
                 '}';
     }

@@ -21,7 +21,7 @@ public class ClinicDtoMapperImpl implements ClinicDtoMapper{
         outGoingClinicDto.setId(clinic.getId());
         outGoingClinicDto.setNameClinic(clinic.getNameClinic());
         outGoingClinicDto.setDoctorList(clinic.getDoctorList());
-        outGoingClinicDto.setPatientList(clinic.getPatientList());
+//        outGoingClinicDto.setPatientList(clinic.getPatientList());
         return outGoingClinicDto;
     }
 }

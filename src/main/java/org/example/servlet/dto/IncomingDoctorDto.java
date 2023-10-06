@@ -5,6 +5,7 @@ public class IncomingDoctorDto {
     private String nameDoctor;
     private String specialization;
 
+
     public Long getId() {
         return id;
     }

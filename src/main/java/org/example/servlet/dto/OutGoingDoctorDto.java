@@ -10,16 +10,13 @@ public class OutGoingDoctorDto {
     private String nameDoctor;
     private String specialization;
     private List<String> patients;
-    private String clinic;
-
     public OutGoingDoctorDto() {
     }
 
-    public OutGoingDoctorDto(String nameDoctor, String specialization, List<String> patients, String clinic) {
+    public OutGoingDoctorDto(String nameDoctor, String specialization, List<String> patients) {
         this.nameDoctor = nameDoctor;
         this.specialization = specialization;
         this.patients = patients;
-        this.clinic = clinic;
     }
 
     public String getSpecialization() {
@@ -38,13 +35,6 @@ public class OutGoingDoctorDto {
         this.patients = patients;
     }
 
-    public String getClinic() {
-        return clinic;
-    }
-
-    public void setClinic(String clinic) {
-        this.clinic = clinic;
-    }
 
     public String getNameDoctor() {
         return nameDoctor;
