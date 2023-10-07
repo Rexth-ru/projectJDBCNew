@@ -1,11 +1,15 @@
 package org.example.repository.impl;
 
 import org.example.db.DataSourceConnectHikari;
+import org.example.ex.ModelNotFoundException;
 import org.example.model.Clinic;
 import org.example.model.Doctor;
 import org.example.model.Patient;
 import org.example.repository.DoctorRepository;
+import org.example.repository.mapper.ClinicResultSetMapperImpl;
+import org.example.repository.mapper.DoctorResultSetMapperImpl;
 import org.example.repository.mapper.GeneralResultSetMapper;
+import org.example.repository.mapper.PatientResultSetMapperImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,10 +17,19 @@ import java.util.List;
 
 public class DoctorRepositoryImpl implements DoctorRepository {
 
-    private final GeneralResultSetMapper<Doctor> doctorMapper;
-    private final GeneralResultSetMapper<Clinic> clinicMapper;
-    private final GeneralResultSetMapper<Patient> patientMapper;
-    private final DataSourceConnectHikari connect;
+    private GeneralResultSetMapper<Doctor> doctorMapper = new DoctorResultSetMapperImpl();
+    private GeneralResultSetMapper<Clinic> clinicMapper = new ClinicResultSetMapperImpl();
+    private GeneralResultSetMapper<Patient> patientMapper = new PatientResultSetMapperImpl();
+    private DataSourceConnectHikari connect;
+
+    public DoctorRepositoryImpl(DataSourceConnectHikari connect) {
+        this.connect = connect;
+    }
+
+    public DoctorRepositoryImpl() {
+        this.connect = new DataSourceConnectHikari();
+    }
+
     //    private static final String SQL_SELECT_ALL_DOCTORS = "select d.name_doctor, d.specialization, p.name_patient, c.name  from doctors as d
 //    inner join doctor_patient dp on d.id = dp.doctor_id inner join patients p on p.id = dp.patient_id
 //    inner join clinic c on c.id = d.clinic_id";
@@ -25,39 +38,34 @@ public class DoctorRepositoryImpl implements DoctorRepository {
                     "p.patient_id, p.name_patient, c.clinic_id, c.name_clinic from doctors as d\n" +
                     "inner join doctor_patient dp on d.doctor_id = dp.doctor_id\n" +
                     "inner join patients p on p.patient_id = dp.patient_id\n" +
-                    "inner join clinic c on c.doctor_id = d.doctor_id where d.doctor_id = ? order by p.name_patient";
+                    "inner join clinics c on c.doctor_id = d.doctor_id where d.doctor_id = ? order by p.name_patient";
     private static final String SQL_INSERT_DOCTOR =
             "INSERT INTO doctors (doctor_id, name_doctor, specialization) VALUES ((?),(?),(?))";
     private static final String SQL_DELETE_DOCTOR_ID = "DELETE FROM doctors WHERE doctor_id =?";
     private static final String SQL_UPDATE_DOCTOR_ID =
             "UPDATE doctors SET name_doctor = ?, specialization = ? WHERE doctor_id = ? ";
 
-    public DoctorRepositoryImpl(GeneralResultSetMapper<Doctor> doctorMapper, GeneralResultSetMapper<Clinic> clinicMapper, GeneralResultSetMapper<Patient> patientMapper, DataSourceConnectHikari connect) {
-        this.doctorMapper = doctorMapper;
-        this.clinicMapper = clinicMapper;
-        this.patientMapper = patientMapper;
-
-//        this.connect = connect;
-        this.connect = connect;
-    }
 
     @Override
     public Doctor findById(Long id) {
 
         try (Connection connection = connect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_DOCTOR_ID)) {
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            Doctor doctor = doctorMapper.map(resultSet);
+            Doctor doctor;
             List<Patient> patients = new ArrayList<>();
-            Patient patient = patientMapper.map(resultSet);
-            patients.add(patient);
-            while (resultSet.next()) {
-                patients.add(patientMapper.map(resultSet));
-            }
-            doctor.setPatients(patients);
-
-            return doctor;
+            if (resultSet.next()) {
+                doctor = doctorMapper.map(resultSet);
+                Patient patient = patientMapper.map(resultSet);
+                patients.add(patient);
+                while (resultSet.next()) {
+                    patient = patientMapper.map(resultSet);
+                    patients.add(patient);
+                }
+                doctor.setPatients(patients);
+                return doctor;
+            } else throw new ModelNotFoundException();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -68,15 +76,38 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     public boolean deleteById(Long id) {
         try (Connection connection = connect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_DOCTOR_ID)) {
-            Integer resultSet = preparedStatement.executeUpdate();
-            if (resultSet == 0)
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            if (resultSet.wasNull())
-                return true;
+            preparedStatement.setLong(1, id);
+            int resultSet = preparedStatement.executeUpdate();
+            if (resultSet == 0) throw new ModelNotFoundException();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return false;
+        return true;
+    }
+
+    @Override
+    public Doctor save(Doctor doctor) {
+        try (Connection connection = connect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_DOCTOR)) {
+            preparedStatement.setLong(1, doctor.getId());
+            preparedStatement.setString(2, doctor.getNameDoctor());
+            preparedStatement.setString(3, doctor.getSpecialization());
+            int resultSet = preparedStatement.executeUpdate();
+            if (resultSet == 0) throw new ModelNotFoundException();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return doctor;
+    }
+
+    @Override
+    public Doctor update(Doctor doctor) {
+            Doctor doctorOld = findById(doctor.getId());
+            if (doctorOld!=null) {
+                doctorOld.setNameDoctor(doctor.getNameDoctor());
+                doctorOld.setSpecialization(doctor.getSpecialization());
+                return doctorOld;
+            }throw new RuntimeException();
     }
 
     @Override
@@ -96,40 +127,4 @@ public class DoctorRepositoryImpl implements DoctorRepository {
 //
 //        return doctors;
         return null;
-    }
-
-    @Override
-    public Doctor save(Doctor doctor) {
-        try (Connection connection = connect.getConnection();
-             Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(SQL_INSERT_DOCTOR);
-            Long id = resultSet.getLong(1);
-            String nameDoctor = resultSet.getString(2);
-            String specialization = resultSet.getString(3);
-
-            return new Doctor(id, nameDoctor, specialization);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public Doctor update(Doctor doctor) {
-        try (Connection connection = connect.getConnection();
-             PreparedStatement preparedStatement = connection
-                     .prepareStatement(SQL_UPDATE_DOCTOR_ID)) {
-            preparedStatement.setLong(1, doctor.getId());
-            preparedStatement.setString(2, doctor.getNameDoctor());
-            preparedStatement.setString(3, doctor.getSpecialization());
-            preparedStatement.executeUpdate();
-
-//            doctor1.setId(doctorMapper.map(resultSet).getId());
-//            doctor.setNameDoctor(doctor.getNameDoctor());
-//            doctor1.setSpecialization(doctor.getSpecialization());
-
-            return doctor;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-}
+    }}
