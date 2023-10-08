@@ -11,14 +11,16 @@ import org.example.repository.mapper.DoctorResultSetMapperImpl;
 import org.example.repository.mapper.GeneralResultSetMapper;
 import org.example.repository.mapper.PatientResultSetMapperImpl;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DoctorRepositoryImpl implements DoctorRepository {
 
     private GeneralResultSetMapper<Doctor> doctorMapper = new DoctorResultSetMapperImpl();
-    private GeneralResultSetMapper<Clinic> clinicMapper = new ClinicResultSetMapperImpl();
     private GeneralResultSetMapper<Patient> patientMapper = new PatientResultSetMapperImpl();
     private DataSourceConnectHikari connect;
 
@@ -26,29 +28,17 @@ public class DoctorRepositoryImpl implements DoctorRepository {
         this.connect = connect;
     }
 
-    public DoctorRepositoryImpl() {
-        this.connect = new DataSourceConnectHikari();
-    }
-
-    //    private static final String SQL_SELECT_ALL_DOCTORS = "select d.name_doctor, d.specialization, p.name_patient, c.name  from doctors as d
-//    inner join doctor_patient dp on d.id = dp.doctor_id inner join patients p on p.id = dp.patient_id
-//    inner join clinic c on c.id = d.clinic_id";
     private static final String SQL_SELECT_DOCTOR_ID =
             "select d.doctor_id, d.name_doctor,d.specialization,\n" +
-                    "p.patient_id, p.name_patient, c.clinic_id, c.name_clinic from doctors as d\n" +
+                    "p.patient_id, p.name_patient from doctors as d\n" +
                     "inner join doctor_patient dp on d.doctor_id = dp.doctor_id\n" +
                     "inner join patients p on p.patient_id = dp.patient_id\n" +
-                    "inner join clinics c on c.doctor_id = d.doctor_id where d.doctor_id = ? order by p.name_patient";
+                    "where d.doctor_id = ? order by p.name_patient";
     private static final String SQL_INSERT_DOCTOR =
             "INSERT INTO doctors (doctor_id, name_doctor, specialization) VALUES ((?),(?),(?))";
     private static final String SQL_DELETE_DOCTOR_ID = "DELETE FROM doctors WHERE doctor_id =?";
-    private static final String SQL_UPDATE_DOCTOR_ID =
-            "UPDATE doctors SET name_doctor = ?, specialization = ? WHERE doctor_id = ? ";
-
-
     @Override
     public Doctor findById(Long id) {
-
         try (Connection connection = connect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_DOCTOR_ID)) {
             preparedStatement.setLong(1, id);
@@ -102,29 +92,12 @@ public class DoctorRepositoryImpl implements DoctorRepository {
 
     @Override
     public Doctor update(Doctor doctor) {
-            Doctor doctorOld = findById(doctor.getId());
-            if (doctorOld!=null) {
-                doctorOld.setNameDoctor(doctor.getNameDoctor());
-                doctorOld.setSpecialization(doctor.getSpecialization());
-                return doctorOld;
-            }throw new RuntimeException();
+        Doctor doctorOld = findById(doctor.getId());
+        if (doctorOld != null) {
+            doctorOld.setNameDoctor(doctor.getNameDoctor());
+            doctorOld.setSpecialization(doctor.getSpecialization());
+            return doctorOld;
+        }
+        throw new RuntimeException();
     }
-
-    @Override
-    public List<Doctor> findAll() {
-//        List<Doctor> doctors = new ArrayList<>();
-//        List<Patient> patients = new ArrayList<>();
-//        try (Connection connection = connect.getConnection();
-//             PreparedStatement statement = connection.prepareStatement(SQL_SELECT_ALL_DOCTORS)) {
-//            ResultSet rs = statement.executeQuery();
-//           rs.next();
-//           doctors.add(doctorMapper.map(rs));
-//            Patient patient = patientMapper.map(rs);
-//            doctors.get(0).setPatients();
-//        } catch (SQLException ex) {
-//            throw new RuntimeException(ex);
-//        }
-//
-//        return doctors;
-        return null;
-    }}
+}

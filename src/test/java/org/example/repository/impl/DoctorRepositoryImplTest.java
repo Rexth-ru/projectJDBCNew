@@ -27,19 +27,18 @@ class DoctorRepositoryImplTest {
         hikariConfig.setUsername(container.getUsername());
         doctorRepository = new DoctorRepositoryImpl(new DataSourceConnectHikari(hikariConfig));
     }
-    @AfterEach
-    void stopContainer(){
+    @AfterAll
+    static void stopContainer(){
         container.stop();
     }
-    @Test
-    void findAll() {
-    }
+
     @Test
     void update() {
         Doctor doctor = new Doctor(1L,"nameDoctor","Spec");
         doctorRepository.update(doctor);
         Assertions.assertEquals(doctor.getId(),1L);
         Assertions.assertEquals(doctor.getNameDoctor(),"nameDoctor");
+
     }
     @Test
     void save() {
@@ -79,6 +78,6 @@ class DoctorRepositoryImplTest {
     @Test
     void findById(){
         Doctor doctor = doctorRepository.findById(1L);
-        Assertions.assertEquals(doctor.getNameDoctor(),"Иванов"); //doctor1.getNameDoctor());
+        Assertions.assertEquals(doctor.getNameDoctor(),"Иванов");
     }
 }
