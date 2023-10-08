@@ -11,6 +11,12 @@ public class Clinic {
     public Clinic() {
     }
 
+    public Clinic(Long id, String nameClinic, List<Doctor> doctorList) {
+        this.id = id;
+        this.nameClinic = nameClinic;
+        this.doctorList = doctorList;
+    }
+
     public Clinic(Long id, String nameClinic) {
         this.id = id;
         this.nameClinic = nameClinic;

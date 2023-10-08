@@ -5,11 +5,13 @@ import org.example.repository.DoctorRepository;
 import org.example.service.MyService;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class DoctorService implements MyService<Doctor> {
-    private DoctorRepository doctorRepository;
+    private final DoctorRepository doctorRepository;
 
+    public DoctorService(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
+    }
 
     @Override
     public Doctor save(Doctor doctor) throws SQLException {
@@ -17,8 +19,12 @@ public class DoctorService implements MyService<Doctor> {
     }
 
     @Override
-    public Doctor findById(Long id) {
-        return doctorRepository.findById(id);
+    public Doctor findById(Long id)  {
+        try {
+            return doctorRepository.findById(id);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -28,13 +34,8 @@ public class DoctorService implements MyService<Doctor> {
     }
 
     @Override
-    public Doctor update(Doctor doctor) {
+    public Doctor update(Doctor doctor) throws ClassNotFoundException {
         return doctorRepository.update(doctor);
     }
 
-
-    @Override
-    public List<Doctor> findAll() {
-        return doctorRepository.findAll();
-    }
 }
