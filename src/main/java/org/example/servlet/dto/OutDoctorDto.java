@@ -1,22 +1,26 @@
 package org.example.servlet.dto;
 
-import org.example.model.Clinic;
-import org.example.model.Doctor;
-import org.example.model.Patient;
-
 import java.util.List;
 
-public class OutGoingDoctorDto {
+public class OutDoctorDto {
     private String nameDoctor;
     private String specialization;
-    private List<String> patients;
-    public OutGoingDoctorDto() {
+    private List<String> patientName;
+    public OutDoctorDto() {
     }
 
-    public OutGoingDoctorDto(String nameDoctor, String specialization, List<String> patients) {
+    public OutDoctorDto(String nameDoctor, String specialization, List<String> patientName) {
         this.nameDoctor = nameDoctor;
         this.specialization = specialization;
-        this.patients = patients;
+        this.patientName = patientName;
+    }
+
+    public String getNameDoctor() {
+        return nameDoctor;
+    }
+
+    public void setNameDoctor(String nameDoctor) {
+        this.nameDoctor = nameDoctor;
     }
 
     public String getSpecialization() {
@@ -27,22 +31,16 @@ public class OutGoingDoctorDto {
         this.specialization = specialization;
     }
 
-    public List<String> getPatients() {
-        return patients;
+    public List<String> getPatientName() {
+        return patientName;
     }
 
-    public void setPatients(List<String> patients) {
-        this.patients = patients;
+    public void setPatientName(List<String> patientName) {
+        this.patientName = patientName;
     }
+}
 
 
-    public String getNameDoctor() {
-        return nameDoctor;
-    }
-
-    public void setNameDoctor(String nameDoctor) {
-        this.nameDoctor = nameDoctor;
-    }}
 
 //    ResultSetMetaData md = resultSet.getMetaData();
 //    int numCols = md.getColumnCount();

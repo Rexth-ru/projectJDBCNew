@@ -10,16 +10,13 @@ import org.example.servlet.dto.IncomingClinicDto;
 import org.example.servlet.mapper.ClinicDtoMapper;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
-import com.google.gson.Gson;
 
 @WebServlet(name = "clinicServlet", value = "/clinic")
 public class ClinicServlet extends MyServlet{
     private final MyService<Clinic> myService;
     private final ClinicDtoMapper clinicDtoMapper;
-    private Gson gson;
 
     public ClinicServlet(MyService<Clinic> myService, ClinicDtoMapper clinicDtoMapper) {
         this.myService = myService;
@@ -39,19 +36,16 @@ public class ClinicServlet extends MyServlet{
 
         Clinic clinic = clinicDtoMapper.map(new IncomingClinicDto());
         Clinic saved = null;
-        try {
-            saved = myService.save(clinic);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        String res = gson.toJson(clinicDtoMapper.map(saved));
-
-        PrintWriter out = resp.getWriter();
-
-        out.print(res);
-        out.flush();
+        //            saved = myService.save(clinic);
     }
+
+//        String res = gson.toJson(clinicDtoMapper.map(saved));
+//
+//        PrintWriter out = resp.getWriter();
+//
+//        out.print(res);
+//        out.flush();
+//    }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -72,7 +66,12 @@ public class ClinicServlet extends MyServlet{
         }
 //        Long clinicId = Long.valueOf(splits[1]);
         Long clinicId = Long.valueOf(req.getParameter("id"));
-        Clinic clinic = myService.findById(clinicId);
+        Clinic clinic = null;
+        try {
+            clinic = myService.findById(clinicId);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         if(clinic==null) {
 
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);

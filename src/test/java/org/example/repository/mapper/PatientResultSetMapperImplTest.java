@@ -1,6 +1,5 @@
 package org.example.repository.mapper;
 
-import org.example.model.Doctor;
 import org.example.model.Patient;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -11,9 +10,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(MockitoJUnitRunner.class)
 class PatientResultSetMapperImplTest {

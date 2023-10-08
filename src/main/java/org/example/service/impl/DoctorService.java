@@ -19,7 +19,7 @@ public class DoctorService implements MyService<Doctor> {
     }
 
     @Override
-    public Doctor findById(Long id)  {
+    public Doctor findById(Long id) {
         try {
             return doctorRepository.findById(id);
         } catch (ClassNotFoundException e) {
@@ -29,7 +29,7 @@ public class DoctorService implements MyService<Doctor> {
 
     @Override
     public boolean deleteById(Long id) {
-        if (doctorRepository.deleteById(id))return true;
+        if (doctorRepository.deleteById(id)) return true;
         return false;
     }
 

@@ -7,13 +7,30 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DataSourceConnectHikari {
-    private static final HikariConfig config = new HikariConfig("db.properties");
-    private final transient HikariDataSource ds = new HikariDataSource( config );
+    private HikariConfig config;
+    private HikariDataSource ds;
 
-//    private DataSourceConnectHikari(HikariDataSource ds) {
-//        this.ds = ds;
-//    }
-    public  Connection getConnection() throws SQLException {
-        return ds.getConnection();
+    public DataSourceConnectHikari() {
+        config = new HikariConfig("db.properties");
+        ds = new HikariDataSource(config);
+    }
+
+    public DataSourceConnectHikari(HikariConfig config) {
+        this.config = config;
+        this.ds = new HikariDataSource(config);
+    }
+
+
+    public Connection getConnection() throws SQLException {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        Connection connection = ds.getConnection();
+        connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        return connection;
     }
 }
+
+

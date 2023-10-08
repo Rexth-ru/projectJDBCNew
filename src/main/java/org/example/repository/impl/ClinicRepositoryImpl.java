@@ -16,9 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ClinicRepositoryImpl implements ClinicRepository {
     private GeneralResultSetMapper<Doctor> doctorMapper = new DoctorResultSetMapperImpl();
@@ -72,51 +70,52 @@ public class ClinicRepositoryImpl implements ClinicRepository {
                         doctors.add(doctorOther);
                     }
                 }
-               clinic.setDoctorList(doctors);
+                clinic.setDoctorList(doctors);
             }
-         return clinic;
+            return clinic;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
     }
-        @Override
-        public boolean deleteById (Long id) {
-            try (Connection connection = connect.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_CLINIC_ID)) {
-                preparedStatement.setLong(1, id);
-                int resultSet = preparedStatement.executeUpdate();
-                if (resultSet == 0) throw new ModelNotFoundException();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            return true;
+
+    @Override
+    public boolean deleteById(Long id) {
+        try (Connection connection = connect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_CLINIC_ID)) {
+            preparedStatement.setLong(1, id);
+            int resultSet = preparedStatement.executeUpdate();
+            if (resultSet == 0) throw new ModelNotFoundException();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-            @Override
-        public Clinic save (Clinic clinic)  {
-
-                try (Connection connection = connect.getConnection();
-                     PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_CLINIC)) {
-                    preparedStatement.setLong(1, clinic.getId());
-                    preparedStatement.setString(2, clinic.getNameClinic());
-
-                    int resultSet = preparedStatement.executeUpdate();
-                    if (resultSet == 0) throw new ModelNotFoundException();
-
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                return clinic;
-        }
-
-        @Override
-        public Clinic update (Clinic clinic){
-            Clinic clinicOld = findById(clinic.getId());
-            if (clinicOld != null) {
-                clinicOld.setNameClinic(clinic.getNameClinic());
-                return clinicOld;
-            }
-            throw new RuntimeException();
-        }
+        return true;
     }
+
+    @Override
+    public Clinic save(Clinic clinic) {
+
+        try (Connection connection = connect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_CLINIC)) {
+            preparedStatement.setLong(1, clinic.getId());
+            preparedStatement.setString(2, clinic.getNameClinic());
+
+            int resultSet = preparedStatement.executeUpdate();
+            if (resultSet == 0) throw new ModelNotFoundException();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return clinic;
+    }
+
+    @Override
+    public Clinic update(Clinic clinic) {
+        Clinic clinicOld = findById(clinic.getId());
+        if (clinicOld != null) {
+            clinicOld.setNameClinic(clinic.getNameClinic());
+            return clinicOld;
+        }
+        throw new RuntimeException();
+    }
+}

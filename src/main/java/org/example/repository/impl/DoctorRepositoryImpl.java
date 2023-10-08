@@ -2,11 +2,9 @@ package org.example.repository.impl;
 
 import org.example.db.DataSourceConnectHikari;
 import org.example.ex.ModelNotFoundException;
-import org.example.model.Clinic;
 import org.example.model.Doctor;
 import org.example.model.Patient;
 import org.example.repository.DoctorRepository;
-import org.example.repository.mapper.ClinicResultSetMapperImpl;
 import org.example.repository.mapper.DoctorResultSetMapperImpl;
 import org.example.repository.mapper.GeneralResultSetMapper;
 import org.example.repository.mapper.PatientResultSetMapperImpl;
@@ -37,6 +35,7 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     private static final String SQL_INSERT_DOCTOR =
             "INSERT INTO doctors (doctor_id, name_doctor, specialization) VALUES ((?),(?),(?))";
     private static final String SQL_DELETE_DOCTOR_ID = "DELETE FROM doctors WHERE doctor_id =?";
+
     @Override
     public Doctor findById(Long id) {
         try (Connection connection = connect.getConnection();

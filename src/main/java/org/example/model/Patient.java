@@ -11,6 +11,11 @@ public class Patient {
     public Patient() {
     }
 
+    public Patient(Long id, String namePatient) {
+        this.id = id;
+        this.namePatient = namePatient;
+    }
+
     public Patient(Long id, String namePatient, List<Doctor> doctors) {
         this.id = id;
         this.namePatient = namePatient;

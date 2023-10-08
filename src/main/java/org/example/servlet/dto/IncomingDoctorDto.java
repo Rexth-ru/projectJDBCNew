@@ -5,6 +5,14 @@ public class IncomingDoctorDto {
     private String nameDoctor;
     private String specialization;
 
+    public IncomingDoctorDto(Long id, String nameDoctor, String specialization) {
+        this.id = id;
+        this.nameDoctor = nameDoctor;
+        this.specialization = specialization;
+    }
+
+    public IncomingDoctorDto() {
+    }
 
     public Long getId() {
         return id;

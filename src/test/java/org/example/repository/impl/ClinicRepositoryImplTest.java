@@ -11,7 +11,7 @@ import org.testcontainers.junit.jupiter.Container;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClinicRepositoryImplTest {
-    ClinicRepositoryImpl clinicRepository;
+   private ClinicRepositoryImpl clinicRepository;
     @Container
     public static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15")
             .withDatabaseName("aston")

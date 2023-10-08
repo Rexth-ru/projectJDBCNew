@@ -2,13 +2,12 @@ package org.example.service.impl;
 
 import org.example.model.Clinic;
 import org.example.repository.ClinicRepository;
-import org.example.repository.impl.ClinicRepositoryImpl;
 import org.example.service.MyService;
 
 import java.sql.SQLException;
 
 public class ClinicService implements MyService<Clinic> {
-    private  final ClinicRepository clinicRepository;
+    private final ClinicRepository clinicRepository;
 
     public ClinicService(ClinicRepository clinicRepository) {
         this.clinicRepository = clinicRepository;
@@ -16,7 +15,7 @@ public class ClinicService implements MyService<Clinic> {
 
     @Override
     public Clinic save(Clinic clinic) throws SQLException {
-       return clinicRepository.save(clinic);
+        return clinicRepository.save(clinic);
     }
 
     @Override

@@ -9,26 +9,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3258583-c216-42c9-be87-d5b1248d1e02" name="Changes" comment="onecommit">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/repository/impl/DoctorRepositoryImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/repository/mapper/ClinicResultSetMapperImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/repository/mapper/DoctorResultSetMapperImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/repository/mapper/PatientResultSetMapperImplTest.java" afterDir="false" />
+    <list default="true" id="e3258583-c216-42c9-be87-d5b1248d1e02" name="Changes" comment="service">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/ex/ModelNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/IncomingPatientDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/OutPatientDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/PatientDtoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/PatientDtoMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/servlet/mapper/ClinicDtoMapperImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/servlet/mapper/DoctorDtoMapperImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/servlet/mapper/PatientDtoMapperImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Clinic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Clinic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/db/DataSourceConnectHikari.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/db/DataSourceConnectHikari.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Doctor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Patient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/ClinicRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/ClinicRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/DoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/DoctorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/GeneralRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/GeneralRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/PatientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/PatientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/impl/ClinicRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/impl/ClinicRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/impl/DoctorRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/impl/DoctorRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/mapper/ClinicResultSetMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/mapper/ClinicResultSetMapperImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/mapper/DoctorResultSetMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/mapper/DoctorResultSetMapperImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/mapper/PatientResultSetMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/mapper/PatientResultSetMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/MyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/MyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/impl/ClinicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/impl/ClinicService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/impl/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/impl/DoctorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/ClinicServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/ClinicServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/DoctorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/DoctorServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/IncomingDoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/IncomingDoctorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/OutGoingDoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/OutGoingDoctorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/OutGoingClinicDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/OutClinicDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/OutGoingDoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/dto/OutDoctorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/ClinicDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/ClinicDtoMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/ClinicDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/ClinicDtoMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/DoctorDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/DoctorDtoMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/DoctorDtoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/servlet/mapper/DoctorDtoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db-migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db-migration.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/repository/impl/ClinicRepositoryImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/repository/impl/ClinicRepositoryImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/repository/mapper/PatientResultSetMapperImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/repository/mapper/PatientResultSetMapperImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,17 +106,20 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP PC\IdeaProjects\ProjectJDBC\src\test\resources" />
       <recent name="C:\Users\HP PC\IdeaProjects\ProjectJDBC" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.example.servlet.mapper" />
+      <recent name="org.example.service.impl" />
       <recent name="org.example.repository.impl" />
       <recent name="org.example.repository.mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DoctorRepositoryImplTest.findById">
+  <component name="RunManager" selected="JUnit.PatientDtoMapperImplTest">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="ProjectJDBC" />
@@ -120,80 +139,78 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClinicResultSetMapperImplTest.map" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClinicDtoMapperImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProjectJDBC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.repository.mapper.*" />
+          <option name="PATTERN" value="org.example.servlet.mapper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.example.repository.mapper" />
-      <option name="MAIN_CLASS_NAME" value="org.example.repository.mapper.ClinicResultSetMapperImplTest" />
-      <option name="METHOD_NAME" value="map" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DoctorRepositoryImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProjectJDBC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.repository.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example.repository.impl" />
-      <option name="MAIN_CLASS_NAME" value="org.example.repository.impl.DoctorRepositoryImplTest" />
+      <option name="PACKAGE_NAME" value="org.example.servlet.mapper" />
+      <option name="MAIN_CLASS_NAME" value="org.example.servlet.mapper.ClinicDtoMapperImplTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DoctorRepositoryImplTest.findById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DoctorDtoMapperImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProjectJDBC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.repository.impl.*" />
+          <option name="PATTERN" value="org.example.servlet.mapper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.example.repository.impl" />
-      <option name="MAIN_CLASS_NAME" value="org.example.repository.impl.DoctorRepositoryImplTest" />
-      <option name="METHOD_NAME" value="findById" />
+      <option name="PACKAGE_NAME" value="org.example.servlet.mapper" />
+      <option name="MAIN_CLASS_NAME" value="org.example.servlet.mapper.DoctorDtoMapperImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DoctorDtoMapperImplTest.mapToDoctor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjectJDBC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.servlet.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.servlet.mapper" />
+      <option name="MAIN_CLASS_NAME" value="org.example.servlet.mapper.DoctorDtoMapperImplTest" />
+      <option name="METHOD_NAME" value="mapToDoctor" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DoctorResultSetMapperImplTest.map" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PatientDtoMapperImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProjectJDBC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.repository.mapper.*" />
+          <option name="PATTERN" value="org.example.servlet.mapper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.example.repository.mapper" />
-      <option name="MAIN_CLASS_NAME" value="org.example.repository.mapper.DoctorResultSetMapperImplTest" />
-      <option name="METHOD_NAME" value="map" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.example.servlet.mapper" />
+      <option name="MAIN_CLASS_NAME" value="org.example.servlet.mapper.PatientDtoMapperImplTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PatientResultSetMapperImplTest.map" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PatientDtoMapperImplTest.mapToPatient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProjectJDBC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.repository.mapper.*" />
+          <option name="PATTERN" value="org.example.servlet.mapper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.example.repository.mapper" />
-      <option name="MAIN_CLASS_NAME" value="org.example.repository.mapper.PatientResultSetMapperImplTest" />
-      <option name="METHOD_NAME" value="map" />
+      <option name="PACKAGE_NAME" value="org.example.servlet.mapper" />
+      <option name="MAIN_CLASS_NAME" value="org.example.servlet.mapper.PatientDtoMapperImplTest" />
+      <option name="METHOD_NAME" value="mapToPatient" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -366,20 +383,20 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.ClinicResultSetMapperImplTest.map" />
-      <item itemvalue="JUnit.DoctorRepositoryImplTest" />
-      <item itemvalue="JUnit.DoctorRepositoryImplTest.findById" />
-      <item itemvalue="JUnit.PatientResultSetMapperImplTest.map" />
-      <item itemvalue="JUnit.DoctorResultSetMapperImplTest.map" />
+      <item itemvalue="JUnit.ClinicDtoMapperImplTest" />
+      <item itemvalue="JUnit.DoctorDtoMapperImplTest" />
+      <item itemvalue="JUnit.DoctorDtoMapperImplTest.mapToDoctor" />
+      <item itemvalue="JUnit.PatientDtoMapperImplTest" />
+      <item itemvalue="JUnit.PatientDtoMapperImplTest.mapToPatient" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.13" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DoctorRepositoryImplTest.findById" />
-        <item itemvalue="JUnit.DoctorRepositoryImplTest" />
-        <item itemvalue="JUnit.ClinicResultSetMapperImplTest.map" />
-        <item itemvalue="JUnit.PatientResultSetMapperImplTest.map" />
-        <item itemvalue="JUnit.DoctorResultSetMapperImplTest.map" />
+        <item itemvalue="JUnit.PatientDtoMapperImplTest" />
+        <item itemvalue="JUnit.PatientDtoMapperImplTest.mapToPatient" />
+        <item itemvalue="JUnit.DoctorDtoMapperImplTest" />
+        <item itemvalue="JUnit.DoctorDtoMapperImplTest.mapToDoctor" />
+        <item itemvalue="JUnit.ClinicDtoMapperImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -394,7 +411,8 @@
       <workItem from="1695195635864" duration="16657000" />
       <workItem from="1695795216204" duration="22518000" />
       <workItem from="1696400533575" duration="23388000" />
-      <workItem from="1696430311240" duration="21594000" />
+      <workItem from="1696430311240" duration="75713000" />
+      <workItem from="1696760628175" duration="31169000" />
     </task>
     <task id="LOCAL-00001" summary="onecommit">
       <created>1696419168413</created>
@@ -403,7 +421,49 @@
       <option name="project" value="LOCAL" />
       <updated>1696419168413</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="testmapping">
+      <created>1696574044085</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696574044085</updated>
+    </task>
+    <task id="LOCAL-00003" summary="rep+test">
+      <created>1696712850711</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696712850711</updated>
+    </task>
+    <task id="LOCAL-00004" summary="doctorRepTest">
+      <created>1696779947697</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696779947697</updated>
+    </task>
+    <task id="LOCAL-00005" summary="clinicRepTest">
+      <created>1696780093881</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696780093882</updated>
+    </task>
+    <task id="LOCAL-00006" summary="patientRepTest">
+      <created>1696783112611</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1696783112611</updated>
+    </task>
+    <task id="LOCAL-00007" summary="service">
+      <created>1696794051539</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1696794051539</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,7 +471,13 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="onecommit" />
-    <option name="LAST_COMMIT_MESSAGE" value="onecommit" />
+    <MESSAGE value="testmapping" />
+    <MESSAGE value="rep+test" />
+    <MESSAGE value="doctorRepTest" />
+    <MESSAGE value="clinicRepTest" />
+    <MESSAGE value="patientRepTest" />
+    <MESSAGE value="service" />
+    <option name="LAST_COMMIT_MESSAGE" value="service" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

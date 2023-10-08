@@ -1,25 +1,19 @@
 package org.example.servlet;
 
-import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.model.Doctor;
 import org.example.service.impl.DoctorService;
-import org.example.servlet.dto.OutGoingDoctorDto;
 import org.example.servlet.mapper.DoctorDtoMapper;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collection;
 
 @WebServlet(name = "DoctorServlet", value = "/doctor")
 public class DoctorServlet extends HttpServlet {
     private DoctorService doctorService;
     private DoctorDtoMapper dtoMapper;
-    private Gson gson;
 //    private  final HashMap<Long, Doctor> doctors = new HashMap<>();
 
 
