@@ -6,39 +6,41 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.model.Clinic;
-import org.example.repository.ClinicRepository;
-import org.example.repository.impl.ClinicRepositoryImpl;
-import org.example.service.impl.ClinicService;
-import org.example.servlet.dto.IncomingClinicDto;
-import org.example.servlet.dto.OutClinicDto;
-import org.example.servlet.mapper.ClinicDtoMapper;
-import org.example.servlet.mapper.ClinicDtoMapperImpl;
+import org.example.model.Doctor;
+import org.example.model.Patient;
+import org.example.repository.PatientRepository;
+import org.example.repository.impl.PatientRepositoryImpl;
+import org.example.service.impl.PatientService;
+import org.example.servlet.dto.IncomingDoctorDto;
+import org.example.servlet.dto.IncomingPatientDTO;
+import org.example.servlet.dto.OutDoctorDto;
+import org.example.servlet.dto.OutPatientDto;
+import org.example.servlet.mapper.PatientDtoMapper;
+import org.example.servlet.mapper.PatientDtoMapperImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "clinicServlet", value = "/clinic/*")
-public class ClinicServlet extends HttpServlet {
-    private  ClinicDtoMapper clinicDtoMapper;
-    private  ClinicService clinicService;
+@WebServlet(name = "PatientServlet", value = "/patient/*")
+public class PatientServlet extends HttpServlet {
+    private PatientService patientService;
+    private PatientDtoMapper patientDtoMapper;
     private ObjectMapper objectMapper;
 
-    public ClinicServlet() {
+    public PatientServlet() {
     }
-
-    public ClinicServlet(ClinicDtoMapper clinicDtoMapper, ClinicService clinicService, ObjectMapper objectMapper) {
-        this.clinicDtoMapper = clinicDtoMapper;
-        this.clinicService = clinicService;
+    public PatientServlet(PatientService patientService, PatientDtoMapper patientDtoMapper, ObjectMapper objectMapper) {
+        this.patientService = patientService;
+        this.patientDtoMapper = patientDtoMapper;
         this.objectMapper = objectMapper;
     }
 
     @Override
     public void init() throws ServletException {
-        ClinicRepository clinicRepository = new ClinicRepositoryImpl();
-        clinicService = new ClinicService(clinicRepository);
-        clinicDtoMapper = new ClinicDtoMapperImpl();
+        PatientRepository patientRepository = new PatientRepositoryImpl();
+        patientService = new PatientService(patientRepository);
+        patientDtoMapper = new PatientDtoMapperImpl();
         objectMapper = new ObjectMapper();
     }
 
@@ -48,29 +50,28 @@ public class ClinicServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         String param = req.getParameter("id");
         if (!param.isEmpty()) {
-            OutClinicDto outClinicDto = null;
+            OutPatientDto outPatientDto = null;
             try {
-                outClinicDto = clinicDtoMapper.map(clinicService.findById(Long.valueOf(param)));
+                outPatientDto = patientDtoMapper.map(patientService.findById(Long.valueOf(param)));
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            String json = objectMapper.writeValueAsString(outClinicDto);
+            String json = objectMapper.writeValueAsString(outPatientDto);
             resp.getWriter().write(json);
             resp.setStatus(HttpServletResponse.SC_OK);
         } else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         String reqJson = getJson(req);
-        IncomingClinicDto incomingClinicDto = objectMapper.readValue(reqJson, IncomingClinicDto.class);
-        Clinic clinic = clinicDtoMapper.map(incomingClinicDto);
+        IncomingPatientDTO incomingPatientDTO = objectMapper.readValue(reqJson, IncomingPatientDTO.class);
+        Patient patient = patientDtoMapper.map(incomingPatientDTO);
         try {
-            OutClinicDto outClinicDto = clinicDtoMapper.map(clinicService.save(clinic));
-            String json = objectMapper.writeValueAsString(outClinicDto);
+            OutPatientDto outPatientDto = patientDtoMapper.map(patientService.save(patient));
+            String json = objectMapper.writeValueAsString(outPatientDto);
             resp.getWriter().write(json);
             resp.setStatus(HttpServletResponse.SC_OK);
         } catch (SQLException e) {
@@ -83,12 +84,12 @@ public class ClinicServlet extends HttpServlet {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         String reqJson = getJson(req);
-        IncomingClinicDto incomingClinicDto = objectMapper.readValue(reqJson, IncomingClinicDto.class);
-        Clinic clinic = clinicDtoMapper.map(incomingClinicDto);
+        IncomingPatientDTO incomingPatientDTO = objectMapper.readValue(reqJson, IncomingPatientDTO.class);
+        Patient patient = patientDtoMapper.map(incomingPatientDTO);
         try {
-            if (clinicService.update(clinic) != null) {
-                OutClinicDto outClinicDto = clinicDtoMapper.map(clinic);
-                String json = objectMapper.writeValueAsString(outClinicDto);
+            if (patientService.update(patient) != null) {
+                OutPatientDto outPatientDto = patientDtoMapper.map(patient);
+                String json = objectMapper.writeValueAsString(outPatientDto);
                 resp.getWriter().write(json);
                 resp.setStatus(HttpServletResponse.SC_OK);
             } else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -98,10 +99,10 @@ public class ClinicServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         String param = req.getParameter("id");
         if (!param.isEmpty()) {
-            clinicService.deleteById(Long.valueOf(param));
+            patientService.deleteById(Long.valueOf(param));
             resp.setStatus(HttpServletResponse.SC_OK);
         } else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
@@ -116,3 +117,4 @@ public class ClinicServlet extends HttpServlet {
         return stringBuilder.toString();
     }
 }
+

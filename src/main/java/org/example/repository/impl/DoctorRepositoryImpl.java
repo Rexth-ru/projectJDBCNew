@@ -20,10 +20,14 @@ public class DoctorRepositoryImpl implements DoctorRepository {
 
     private GeneralResultSetMapper<Doctor> doctorMapper = new DoctorResultSetMapperImpl();
     private GeneralResultSetMapper<Patient> patientMapper = new PatientResultSetMapperImpl();
-    private DataSourceConnectHikari connect;
+    private DataSourceConnectHikari connect ;
 
     public DoctorRepositoryImpl(DataSourceConnectHikari connect) {
         this.connect = connect;
+    }
+
+    public DoctorRepositoryImpl() {
+        this.connect =new DataSourceConnectHikari();
     }
 
     private static final String SQL_SELECT_DOCTOR_ID =
@@ -97,6 +101,6 @@ public class DoctorRepositoryImpl implements DoctorRepository {
             doctorOld.setSpecialization(doctor.getSpecialization());
             return doctorOld;
         }
-        throw new RuntimeException();
+        return null;
     }
 }

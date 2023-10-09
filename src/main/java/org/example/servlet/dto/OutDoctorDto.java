@@ -1,12 +1,40 @@
 package org.example.servlet.dto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OutDoctorDto {
     private String nameDoctor;
     private String specialization;
     private List<String> patientName;
     public OutDoctorDto() {
+    }
+
+    public OutDoctorDto(String nameDoctor, String specialization) {
+        this.nameDoctor = nameDoctor;
+        this.specialization = specialization;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OutDoctorDto that = (OutDoctorDto) o;
+        return Objects.equals(nameDoctor, that.nameDoctor) && Objects.equals(specialization, that.specialization) && Objects.equals(patientName, that.patientName);
+    }
+
+    @Override
+    public String toString() {
+        return "OutDoctorDto{" +
+                "nameDoctor='" + nameDoctor + '\'' +
+                ", specialization='" + specialization + '\'' +
+                ", patientName=" + patientName +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameDoctor, specialization, patientName);
     }
 
     public OutDoctorDto(String nameDoctor, String specialization, List<String> patientName) {

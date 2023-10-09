@@ -35,6 +35,10 @@ public class PatientRepositoryImpl implements PatientRepository {
         this.connect = connect;
     }
 
+    public PatientRepositoryImpl() {
+        this.connect =new DataSourceConnectHikari();
+    }
+
     @Override
     public Patient findById(Long id) throws ClassNotFoundException {
             try (Connection connection = connect.getConnection();

@@ -24,6 +24,10 @@ public class ClinicRepositoryImpl implements ClinicRepository {
     private GeneralResultSetMapper<Clinic> clinicMapper = new ClinicResultSetMapperImpl();
     private DataSourceConnectHikari connect;
 
+    public ClinicRepositoryImpl() {
+        this.connect =new DataSourceConnectHikari();
+    }
+
     public ClinicRepositoryImpl(DataSourceConnectHikari connect) {
         this.connect = connect;
     }

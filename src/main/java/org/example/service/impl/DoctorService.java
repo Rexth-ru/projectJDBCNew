@@ -2,6 +2,7 @@ package org.example.service.impl;
 
 import org.example.model.Doctor;
 import org.example.repository.DoctorRepository;
+import org.example.repository.impl.DoctorRepositoryImpl;
 import org.example.service.MyService;
 
 import java.sql.SQLException;

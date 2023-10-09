@@ -1,178 +1,113 @@
 package org.example.servlet;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.model.Doctor;
+import org.example.repository.DoctorRepository;
+import org.example.repository.impl.DoctorRepositoryImpl;
 import org.example.service.impl.DoctorService;
+import org.example.servlet.dto.IncomingDoctorDto;
+import org.example.servlet.dto.OutDoctorDto;
 import org.example.servlet.mapper.DoctorDtoMapper;
+import org.example.servlet.mapper.DoctorDtoMapperImpl;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-
+import java.sql.SQLException;
 @WebServlet(name = "DoctorServlet", value = "/doctor")
 public class DoctorServlet extends HttpServlet {
     private DoctorService doctorService;
-    private DoctorDtoMapper dtoMapper;
-//    private  final HashMap<Long, Doctor> doctors = new HashMap<>();
-
-
-//    public DoctorServlet(DoctorService doctorService, DoctorDtoMapper dtoMapper, Gson gson) {
-//        this.doctorService = doctorService;
-//        this.dtoMapper = dtoMapper;
-//        this.gson = gson;
-//    }
-
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().write("Hi, doctor");
-//        String pathInfo = req.getPathInfo();
-//        req.setCharacterEncoding("UTF-8");
-//        if (pathInfo == null || pathInfo.equals("/")) {
-//            Collection<Doctor> doctorCollection = doctorService.findAll();
-//            Collection<OutGoingDoctorDto> models = doctorCollection.stream()
-//                    .map(dtoMapper::map)
-//                    .toList();
-//            sendAsJson(resp, models);
-//            return;
-        }
-//        String[] splits = pathInfo.split("/");
-//        if (splits.length != 2) {
-//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-//            return;
-//        }
-//
-//        Long modelId = Long.valueOf(splits[1]);
-//        if (doctorService.findById(modelId) == null) {
-//            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-//        }
-//        if (!doctors.containsKey(modelId)) {
-//            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-//            return;
-//        }
-
-//        sendAsJson(resp, doctorService.findById(modelId));
-//        return;
+    private DoctorDtoMapper doctorDtoMapper;
+    private ObjectMapper objectMapper ;
+    public DoctorServlet() {
     }
 
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String pathInfo = req.getPathInfo();
-//
-//        if (pathInfo == null || pathInfo.equals("/")) {
-//
-//            StringBuilder buffer = new StringBuilder();
-//            BufferedReader reader = req.getReader();
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                buffer.append(line);
-//            }
-//
-//            String payload = buffer.toString();
-//            IncomingDoctorDto incomingDoctorDto = gson.fromJson(payload, IncomingDoctorDto.class);
-//            Doctor model = dtoMapper.map(incomingDoctorDto);
-//            try {
-//                doctorService.save(model);
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//            dtoMapper.map(model);
-//            try {
-//                doctorService.save(model);
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
+    public DoctorServlet(DoctorService doctorService, DoctorDtoMapper doctorDtoMapper, ObjectMapper objectMapper) {
+        this.doctorService = doctorService;
+        this.doctorDtoMapper = doctorDtoMapper;
+        this.objectMapper = objectMapper;
+    }
 
-//            dtoMapper.map(doctors.put(Long.valueOf(req.getParameter("id")), model));
+    @Override
+    public void init() throws ServletException {
+        DoctorRepository doctorRepository = new DoctorRepositoryImpl();
+        doctorService = new DoctorService(doctorRepository);
+        doctorDtoMapper = new DoctorDtoMapperImpl();
+        objectMapper = new ObjectMapper();
 
-//        } else {
-//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-//            return;
-//        }
-//    }
-//
-//    @Override
-//    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {}
-//        String pathInfo = req.getPathInfo();
-//
-//        if (pathInfo == null || pathInfo.equals("/")) {
-//
-//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-//            return;
-//        }
-//
-//        String[] splits = pathInfo.split("/");
-//
-//        if (splits.length != 2) {
-//
-//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-//            return;
-//        }
-//
-//        Long modelId = Long.valueOf(splits[1]);
-//
-//        if (doctorService.findById(modelId) == null) {
-//
-//            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-//            return;
-//        }
-//
-//        StringBuilder buffer = new StringBuilder();
-//        BufferedReader reader = req.getReader();
-//        String line;
-//        while ((line = reader.readLine()) != null) {
-//            buffer.append(line);
-//        }
-//
-//        String payload = buffer.toString();
-//
-//        Doctor model = gson.fromJson(payload, Doctor.class);
-//        doctorService.update(model);
-//
-////        modelId = Long.valueOf(req.getParameter("id"));
-//        dtoMapper.map(model);
-////        doctors.put(modelId, model);
-//
-////        sendAsJson(resp, model);
-//    }
-//
-//    @Override
-//    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String pathInfo = req.getPathInfo();
-//
-//        if (pathInfo == null || pathInfo.equals("/")) {
-//
-//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-//            return;
-//        }
-//
-//        String[] splits = pathInfo.split("/");
-//
-//        if (splits.length != 2) {
-//
-//            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-//            return;
-//        }
-//        Long modelId = Long.valueOf(splits[1]);
-//
-//        doctorService.deleteById(modelId);
-//
-//    }
-//
-//    private void sendAsJson(
-//            HttpServletResponse response,
-//            Object obj) throws IOException {
-//
-//        response.setContentType("application/json");
-//
-//        String res = gson.toJson(obj);
-//
-//        PrintWriter out = response.getWriter();
-//
-//        out.print(res);
-//        out.flush();
-//    }
+    }
 
-//}
-//    }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        String param = req.getParameter("id");
+        if (!param.isEmpty()) {
+            OutDoctorDto outDoctorDto = doctorDtoMapper.map(doctorService.findById(Long.valueOf(param)));
+            String json = objectMapper.writeValueAsString(outDoctorDto);
+            resp.getWriter().write(json);
+            resp.setStatus(HttpServletResponse.SC_OK);
+        } else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        String reqJson = getJson(req);
+        IncomingDoctorDto incomingDoctorDto = objectMapper.readValue(reqJson, IncomingDoctorDto.class);
+        Doctor doctor = doctorDtoMapper.map(incomingDoctorDto);
+        try {
+            OutDoctorDto outDoctorDto = doctorDtoMapper.map(doctorService.save(doctor));
+            String json = objectMapper.writeValueAsString(outDoctorDto);
+            resp.getWriter().write(json);
+            resp.setStatus(HttpServletResponse.SC_OK);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        String reqJson = getJson(req);
+        IncomingDoctorDto incomingDoctorDto = objectMapper.readValue(reqJson, IncomingDoctorDto.class);
+        Doctor doctor = doctorDtoMapper.map(incomingDoctorDto);
+        try {
+            if (doctorService.update(doctor) != null) {
+                OutDoctorDto outDoctorDto = doctorDtoMapper.map(doctor);
+                String json = objectMapper.writeValueAsString(outDoctorDto);
+                resp.getWriter().write(json);
+                resp.setStatus(HttpServletResponse.SC_OK);
+            } else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+        resp.setCharacterEncoding("UTF-8");
+        String param = req.getParameter("id");
+        if (!param.isEmpty()) {
+            doctorService.deleteById(Long.valueOf(param));
+            resp.setStatus(HttpServletResponse.SC_OK);
+        } else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    }
+
+    private static String getJson(HttpServletRequest req) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        BufferedReader bufferedReader = req.getReader();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            stringBuilder.append(line);
+        }
+        return stringBuilder.toString();
+    }
+}
