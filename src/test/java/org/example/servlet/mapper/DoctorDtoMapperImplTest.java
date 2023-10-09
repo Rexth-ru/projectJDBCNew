@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class DoctorDtoMapperImplTest {
     @InjectMocks
     private DoctorDtoMapperImpl doctorDtoMapper;
-
     @Test
     void mapToDoctor() {
         IncomingDoctorDto incomingDoctorDto =

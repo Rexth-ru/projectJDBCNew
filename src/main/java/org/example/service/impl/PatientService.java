@@ -12,7 +12,6 @@ public class PatientService implements MyService<Patient> {
     public PatientService(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
-
     @Override
     public Patient save(Patient patient) throws SQLException {
         return patientRepository.save(patient);

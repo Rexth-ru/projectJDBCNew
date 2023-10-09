@@ -31,7 +31,6 @@ public class OutDoctorDto {
                 ", patientName=" + patientName +
                 '}';
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(nameDoctor, specialization, patientName);

@@ -92,7 +92,6 @@ public class DoctorRepositoryImpl implements DoctorRepository {
         }
         return doctor;
     }
-
     @Override
     public Doctor update(Doctor doctor) {
         Doctor doctorOld = findById(doctor.getId());

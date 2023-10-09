@@ -6,7 +6,6 @@ import java.util.UUID;
 public class IncomingClinicDto {
     private Long id;
     private String nameClinic;
-
     public IncomingClinicDto() {
     }
 

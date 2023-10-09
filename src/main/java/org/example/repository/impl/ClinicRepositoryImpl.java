@@ -27,7 +27,6 @@ public class ClinicRepositoryImpl implements ClinicRepository {
     public ClinicRepositoryImpl() {
         this.connect =new DataSourceConnectHikari();
     }
-
     public ClinicRepositoryImpl(DataSourceConnectHikari connect) {
         this.connect = connect;
     }

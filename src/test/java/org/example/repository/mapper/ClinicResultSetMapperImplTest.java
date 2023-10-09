@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @RunWith(MockitoJUnitRunner.class)
 class ClinicResultSetMapperImplTest {
 @Mock

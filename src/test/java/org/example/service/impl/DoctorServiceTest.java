@@ -20,7 +20,6 @@ private DoctorRepositoryImpl doctorRepository;
 @InjectMocks
 private DoctorService doctorService ;
 private Doctor doctor;
-
 @BeforeEach
 void setUp(){
     doctorService = new DoctorService(doctorRepository);

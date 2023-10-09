@@ -60,7 +60,6 @@ public class ClinicServlet extends HttpServlet {
         } else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");

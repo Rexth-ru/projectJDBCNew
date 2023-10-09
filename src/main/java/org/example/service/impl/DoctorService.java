@@ -18,7 +18,6 @@ public class DoctorService implements MyService<Doctor> {
     public Doctor save(Doctor doctor) throws SQLException {
         return doctorRepository.save(doctor);
     }
-
     @Override
     public Doctor findById(Long id) {
         try {

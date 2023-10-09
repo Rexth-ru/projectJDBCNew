@@ -13,7 +13,6 @@ public class PatientDtoMapperImpl implements PatientDtoMapper {
         patient.setNamePatient(incomingPatientDTO.getName());
         return patient;
     }
-
     @Override
     public OutPatientDto map(Patient patient) {
         OutPatientDto outPatientDto = new OutPatientDto();

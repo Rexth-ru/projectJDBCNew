@@ -13,4 +13,4 @@ public class ClinicResultSetMapperImpl implements GeneralResultSetMapper<Clinic>
         clinic.setNameClinic(resultSet.getString("name_clinic"));
         return clinic;
     }
-}
+    }

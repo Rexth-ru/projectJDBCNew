@@ -6,7 +6,6 @@ import org.example.servlet.dto.OutDoctorDto;
 
 public interface DoctorDtoMapper {
     Doctor map(IncomingDoctorDto incomingDoctorDto);
-
     OutDoctorDto map(Doctor doctor);
 
 }

@@ -6,7 +6,6 @@ import org.example.model.Doctor;
 import org.junit.jupiter.api.*;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
-
 class DoctorRepositoryImplTest {
     private DoctorRepositoryImpl doctorRepository;
     @Container

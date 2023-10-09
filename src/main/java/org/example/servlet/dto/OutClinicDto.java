@@ -12,7 +12,6 @@ public class OutClinicDto {
     private List<String> doctorsName;
         public OutClinicDto() {
     }
-
     public OutClinicDto(String nameClinic) {
         this.nameClinic = nameClinic;
     }

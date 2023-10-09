@@ -11,7 +11,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-
 @RunWith(MockitoJUnitRunner.class)
 class DoctorResultSetMapperImplTest {
 @Mock

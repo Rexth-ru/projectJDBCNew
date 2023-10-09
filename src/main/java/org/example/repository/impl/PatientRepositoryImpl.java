@@ -34,7 +34,6 @@ public class PatientRepositoryImpl implements PatientRepository {
     public PatientRepositoryImpl(DataSourceConnectHikari connect) {
         this.connect = connect;
     }
-
     public PatientRepositoryImpl() {
         this.connect =new DataSourceConnectHikari();
     }

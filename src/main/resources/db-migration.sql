@@ -20,7 +20,6 @@ CREATE TABLE doctor_patient
     patient_id bigserial references patients (patient_id) on DELETE cascade on UPDATE cascade,
     doctor_id  bigserial references doctors (doctor_id) on DELETE cascade on UPDATE cascade
 );
-
 INSERT INTO doctors(doctor_id, name_doctor, specialization)
 VALUES ('1', 'Иванов', 'Терапевт'),
        ('2', 'Петров', 'Хирург'),

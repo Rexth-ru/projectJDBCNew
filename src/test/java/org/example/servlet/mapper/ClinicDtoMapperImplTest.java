@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @ExtendWith(MockitoExtension.class)
 class ClinicDtoMapperImplTest {
     @InjectMocks

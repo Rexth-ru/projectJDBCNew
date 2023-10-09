@@ -11,20 +11,17 @@ public class Doctor {
 
     public Doctor() {
     }
-
     public Doctor(Long id, String nameDoctor, String specialization, List<Patient> patients) {
         this.id = id;
         this.nameDoctor = nameDoctor;
         this.specialization = specialization;
         this.patients = patients;
     }
-
     public Doctor(Long id, String nameDoctor, String specialization) {
         this.id = id;
         this.nameDoctor = nameDoctor;
         this.specialization = specialization;
     }
-
     public Long getId() {
         return id;
     }

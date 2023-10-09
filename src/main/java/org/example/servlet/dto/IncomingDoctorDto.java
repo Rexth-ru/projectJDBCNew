@@ -32,7 +32,6 @@ public class IncomingDoctorDto {
                 ", specialization='" + specialization + '\'' +
                 '}';
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, nameDoctor, specialization);

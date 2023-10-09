@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 public class ClinicService implements MyService<Clinic> {
     private final ClinicRepository clinicRepository;
-
     public ClinicService(ClinicRepository clinicRepository) {
         this.clinicRepository = clinicRepository;
     }

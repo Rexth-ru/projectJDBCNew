@@ -14,7 +14,6 @@ public class DoctorDtoMapperImpl implements DoctorDtoMapper {
         doctor.setSpecialization(incomingDoctorDto.getSpecialization());
         return doctor;
     }
-
     @Override
     public OutDoctorDto map(Doctor doctor) {
         OutDoctorDto outDoctorDto = new OutDoctorDto();

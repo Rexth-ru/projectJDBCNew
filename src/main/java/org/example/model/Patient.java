@@ -15,7 +15,6 @@ public class Patient {
         this.id = id;
         this.namePatient = namePatient;
     }
-
     public Patient(Long id, String namePatient, List<Doctor> doctors) {
         this.id = id;
         this.namePatient = namePatient;

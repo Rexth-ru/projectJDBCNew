@@ -9,7 +9,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 class ClinicRepositoryImplTest {
    private ClinicRepositoryImpl clinicRepository;
     @Container

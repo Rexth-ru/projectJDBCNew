@@ -29,7 +29,6 @@ public class IncomingPatientDTO {
                 ", name='" + name + '\'' +
                 '}';
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, name);

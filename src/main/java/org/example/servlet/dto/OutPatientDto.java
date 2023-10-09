@@ -15,7 +15,6 @@ public class OutPatientDto {
         this.namePatient = namePatient;
         this.nameDoctors = nameDoctors;
     }
-
     public OutPatientDto() {
     }
 

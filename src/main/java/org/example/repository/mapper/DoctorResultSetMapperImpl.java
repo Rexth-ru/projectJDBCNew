@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DoctorResultSetMapperImpl implements GeneralResultSetMapper<Doctor> {
-
     @Override
     public Doctor map(ResultSet resultSet) throws SQLException {
         Doctor doctor = new Doctor();

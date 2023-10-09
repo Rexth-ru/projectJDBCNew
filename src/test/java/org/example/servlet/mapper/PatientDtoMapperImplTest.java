@@ -25,7 +25,6 @@ private PatientDtoMapperImpl patientDtoMapper;
         Patient patient = patientDtoMapper.map(incomingPatientDTO);
         Assertions.assertEquals(patient.getNamePatient(),incomingPatientDTO.getName());
     }
-
     @Test
     void mapFromPatient() {
         List<Doctor> doctorList = new ArrayList<>();

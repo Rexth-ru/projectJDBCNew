@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.sql.SQLException;
 
-
 @ExtendWith(MockitoExtension.class)
 class PatientServiceTest {
     @Mock

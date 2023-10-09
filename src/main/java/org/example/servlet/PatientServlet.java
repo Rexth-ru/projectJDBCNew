@@ -35,7 +35,6 @@ public class PatientServlet extends HttpServlet {
         this.patientDtoMapper = patientDtoMapper;
         this.objectMapper = objectMapper;
     }
-
     @Override
     public void init() throws ServletException {
         PatientRepository patientRepository = new PatientRepositoryImpl();

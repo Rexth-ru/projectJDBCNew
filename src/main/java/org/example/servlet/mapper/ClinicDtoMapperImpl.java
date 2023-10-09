@@ -15,7 +15,6 @@ public class ClinicDtoMapperImpl implements ClinicDtoMapper {
         clinic.setNameClinic(incomingClinicDto.getNameClinic());
         return clinic;
     }
-
     @Override
     public OutClinicDto map(Clinic clinic) {
         OutClinicDto outClinicDto = new OutClinicDto();

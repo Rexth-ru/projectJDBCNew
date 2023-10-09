@@ -1,7 +1,6 @@
 package org.example.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,14 +18,15 @@ import org.example.servlet.mapper.DoctorDtoMapperImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
+
 @WebServlet(name = "DoctorServlet", value = "/doctor")
 public class DoctorServlet extends HttpServlet {
     private DoctorService doctorService;
     private DoctorDtoMapper doctorDtoMapper;
-    private ObjectMapper objectMapper ;
+    private ObjectMapper objectMapper;
+
     public DoctorServlet() {
     }
-
     public DoctorServlet(DoctorService doctorService, DoctorDtoMapper doctorDtoMapper, ObjectMapper objectMapper) {
         this.doctorService = doctorService;
         this.doctorDtoMapper = doctorDtoMapper;

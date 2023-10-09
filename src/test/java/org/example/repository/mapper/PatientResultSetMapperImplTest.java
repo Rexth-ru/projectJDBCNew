@@ -13,7 +13,6 @@ import java.sql.SQLException;
 
 @RunWith(MockitoJUnitRunner.class)
 class PatientResultSetMapperImplTest {
-
     @Mock
     private ResultSet resultSet = Mockito.mock(ResultSet.class);
     private final PatientResultSetMapperImpl patientResultSetMapper = new PatientResultSetMapperImpl();
