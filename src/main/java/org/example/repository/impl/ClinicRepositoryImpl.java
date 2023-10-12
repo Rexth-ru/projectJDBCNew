@@ -1,7 +1,6 @@
 package org.example.repository.impl;
 
 import org.example.db.DataSourceConnectHikari;
-import org.example.ex.ModelNotFoundException;
 import org.example.model.Clinic;
 import org.example.model.Doctor;
 import org.example.model.Patient;
@@ -88,7 +87,7 @@ public class ClinicRepositoryImpl implements ClinicRepository {
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_CLINIC_ID)) {
             preparedStatement.setLong(1, id);
             int resultSet = preparedStatement.executeUpdate();
-            if (resultSet == 0) throw new ModelNotFoundException();
+            if (resultSet == 0) return false;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -104,7 +103,7 @@ public class ClinicRepositoryImpl implements ClinicRepository {
             preparedStatement.setString(2, clinic.getNameClinic());
 
             int resultSet = preparedStatement.executeUpdate();
-            if (resultSet == 0) throw new ModelNotFoundException();
+            if (resultSet == 0) throw new RuntimeException();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -119,6 +118,6 @@ public class ClinicRepositoryImpl implements ClinicRepository {
             clinicOld.setNameClinic(clinic.getNameClinic());
             return clinicOld;
         }
-        throw new RuntimeException();
+        return null;
     }
 }

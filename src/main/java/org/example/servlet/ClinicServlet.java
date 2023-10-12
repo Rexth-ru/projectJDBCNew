@@ -7,8 +7,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.model.Clinic;
-import org.example.repository.ClinicRepository;
-import org.example.repository.impl.ClinicRepositoryImpl;
 import org.example.service.impl.ClinicService;
 import org.example.servlet.dto.IncomingClinicDto;
 import org.example.servlet.dto.OutClinicDto;
@@ -19,10 +17,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "clinicServlet", value = "/clinic/*")
+@WebServlet(name = "clinicServlet", value = "/clinic")
 public class ClinicServlet extends HttpServlet {
-    private  ClinicDtoMapper clinicDtoMapper;
-    private  ClinicService clinicService;
+    private ClinicDtoMapper clinicDtoMapper;
+    private ClinicService clinicService;
     private ObjectMapper objectMapper;
 
     public ClinicServlet() {
@@ -36,8 +34,7 @@ public class ClinicServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        ClinicRepository clinicRepository = new ClinicRepositoryImpl();
-        clinicService = new ClinicService(clinicRepository);
+        clinicService = new ClinicService();
         clinicDtoMapper = new ClinicDtoMapperImpl();
         objectMapper = new ObjectMapper();
     }

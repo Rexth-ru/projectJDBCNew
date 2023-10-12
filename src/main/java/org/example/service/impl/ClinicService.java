@@ -2,12 +2,18 @@ package org.example.service.impl;
 
 import org.example.model.Clinic;
 import org.example.repository.ClinicRepository;
+import org.example.repository.impl.ClinicRepositoryImpl;
 import org.example.service.MyService;
 
 import java.sql.SQLException;
 
 public class ClinicService implements MyService<Clinic> {
     private final ClinicRepository clinicRepository;
+
+    public ClinicService() {
+        this.clinicRepository = new ClinicRepositoryImpl();
+    }
+
     public ClinicService(ClinicRepository clinicRepository) {
         this.clinicRepository = clinicRepository;
     }
